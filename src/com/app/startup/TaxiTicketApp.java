@@ -6,11 +6,11 @@ import com.app.utility.TicketUtility;
 
 public class TaxiTicketApp {
 
-	@SuppressWarnings("resource")
-	public static void main(String[] args) {
 
-		Scanner scanner = new Scanner(System.in);
-		try {
+	public static void main(String[] args) {
+		
+		try(Scanner scanner = new Scanner(System.in);) {
+			
 			System.out.println("Enter Source: ");
 			String source = scanner.nextLine();
 			System.out.println("Enter Destination: ");
@@ -19,14 +19,21 @@ public class TaxiTicketApp {
 			boolean isValid = TicketUtility.validateSourceAndDestination(source, destination);
 			if (isValid) {
 				System.out.println("Enter no. of travellers: ");
-				int noOfTravellers = scanner.nextInt();
-				Ticket ticket = new Ticket(source, destination, noOfTravellers);
-				ticket.printTicket();
+				
+				String numberOfTraveller = scanner.nextLine();			
+				int noOfTravellers = TicketUtility.getNumberOfTraveller(numberOfTraveller); 
+				if( noOfTravellers > 0) {
+					Ticket ticket = new Ticket(source, destination, noOfTravellers);
+					ticket.printTicket();
+				} else {
+					System.out.println("Please Enter The Valid Number of Travellers. It Should be Numeric Value....");
+				}
+				
 			} else {
 				System.out.println("Re-try again......");
 			}
 	    } catch(Exception e) {
-	    	System.out.println("Exception -" + e.getMessage());
+	    	System.out.println("Exception - " + e.getStackTrace());
 	    }
 		  
 	}

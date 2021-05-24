@@ -1,6 +1,7 @@
 package com.app.utility;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class TicketUtility {
 	private static HashMap<String, Double> distanceMap = new HashMap<>();
@@ -31,5 +32,18 @@ public class TicketUtility {
 			return false;
 		}
 		return isValid;
+	}
+	
+	public static int getNumberOfTraveller(String inputString) {
+		int number = 0;
+		try(Scanner scanner = new Scanner(inputString);) {
+			  if(scanner.hasNextInt()) {
+				    number = scanner.nextInt();
+				}
+	
+		} catch (Exception ex) {
+			System.out.println("Exception - " + ex.getStackTrace());
+		}		
+		return number;	
 	}
 }
