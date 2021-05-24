@@ -22,8 +22,7 @@ public class TicketUtility {
 	}
 
 	public static boolean validateSourceAndDestination(String source, String destination) {
-		boolean isValid = distanceMap.entrySet().stream().anyMatch((map) -> 
-		        (map.getKey().contains(source.toUpperCase())
+		boolean isValid = distanceMap.entrySet().stream().anyMatch((map) -> (map.getKey().contains(source.toUpperCase())
 				&& map.getKey().contains(destination.toUpperCase())));
 
 		if (!isValid) {
@@ -33,17 +32,17 @@ public class TicketUtility {
 		}
 		return isValid;
 	}
-	
+
 	public static int getNumberOfTraveller(String inputString) {
 		int number = 0;
-		try(Scanner scanner = new Scanner(inputString);) {
-			  if(scanner.hasNextInt()) {
-				    number = scanner.nextInt();
-				}
-	
+		try (Scanner scanner = new Scanner(inputString);) {
+			if (scanner.hasNextInt()) {
+				number = scanner.nextInt();
+			}
+
 		} catch (Exception ex) {
 			System.out.println("Exception - " + ex.getStackTrace());
-		}		
-		return number;	
+		}
+		return number;
 	}
 }
